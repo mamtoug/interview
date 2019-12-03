@@ -19,32 +19,27 @@ class KnightRepository extends ServiceEntityRepository
         parent::__construct($registry, Knight::class);
     }
 
-    // /**
-    //  * @return Knight[] Returns an array of Knight objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function allKnight($limit, $offset)
     {
-        return $this->createQueryBuilder('k')
-            ->andWhere('k.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('k.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('k')
+            ->select('k.id as id , k.name as name, k.strength as strength , k.weaponPower as weaponPower');
+        if ($limit && $offset) {
+            $qb->setMaxResults($limit)
+                ->setFirstResult($offset);
+        }
+        return $qb->getQuery()->getArrayResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Knight
+
+    public function oneKnight($id)
     {
-        return $this->createQueryBuilder('k')
-            ->andWhere('k.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb = $this->createQueryBuilder('k')
+            ->select('k.id as id , k.name as name, k.strength as strength , k.weaponPower as weaponPower')
+            ->where('k.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
-    */
+
+
 }

@@ -15,7 +15,7 @@ interface HandlerInterface
      * @param int $id
      * @return Object
      */
-    public function get($id);
+    public function getOne($id);
 
     /**
      * Get a collection of resources
