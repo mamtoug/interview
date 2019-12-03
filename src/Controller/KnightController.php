@@ -79,7 +79,6 @@ class KnightController extends AbstractFOSRestController implements HandlerInter
             $knight = $this->post($data);
             return $this->view($knight, Response::HTTP_CREATED);
         }
-
         return $this->view('form is not valid', Response::HTTP_BAD_REQUEST);
 
     }
