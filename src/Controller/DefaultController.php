@@ -2,14 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Knight;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\FOSRestBundle;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController
+class DefaultController extends AbstractFOSRestController
 {
+    /**
+     * @Route("/", name="default")
+     */
     public function index()
     {
-        ob_start();
-        include __DIR__.'/../../public/welcome.html.php';
-        return new Response(ob_get_clean(), Response::HTTP_NOT_FOUND);
+
+        return new JsonResponse(null ,200);
     }
 }
